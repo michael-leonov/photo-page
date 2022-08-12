@@ -1,0 +1,53 @@
+@media screen and (max-width: 1400px) {
+    .container {
+        width: 1200px;
+    }
+
+    .gallery {
+        .photos {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 960px;
+    }
+
+    .header {
+        &__person {
+            padding: 128px 100px 0;
+        }
+    }
+
+    .gallery {
+        .photos {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        width: 100%;
+    }
+
+    .header {
+        &__person {
+            padding: 128px 10px 0;
+            flex-direction: column;
+            row-gap: 10px;
+
+            .connection {
+                flex-direction: row;
+            }
+        }
+    }
+
+    .gallery {
+        .photos {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+    }
+}
