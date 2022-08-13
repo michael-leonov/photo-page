@@ -153,4 +153,20 @@ img {
     }
 }
 
+.comment-form {
+    display: flex;
+    column-gap: 10px;
+
+    &__input {
+        flex-grow: 1;
+        border: 1px solid #d1d5db;
+    }
+
+    &__btn {
+        background-color: #d1d5db;
+        border: 1px solid black;
+        padding: 5px;
+    }
+}
+
 @import 'media';

@@ -3,9 +3,11 @@ import httpRequest from './js/http-request';
 import { photos, photoTemplate } from './js/templating';
 import showPopUp from './js/pop-up';
 
+window.baseURL = 'https://boiling-refuge-66454.herokuapp.com/images';
+
 document.addEventListener('DOMContentLoaded', () => {
     httpRequest({
-        url: 'https://boiling-refuge-66454.herokuapp.com/images',
+        url: window.baseURL,
         onSuccess: (data) => {
             data.forEach((photo) => {
                 photos.appendChild(photoTemplate(photo));

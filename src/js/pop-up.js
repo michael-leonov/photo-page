@@ -1,5 +1,6 @@
 import httpRequest from './http-request';
 import { photos } from './templating';
+import addComment from './add-comment';
 
 export default function showPopUp() {
     const photosImg = photos.querySelectorAll('.photo__img');
@@ -9,13 +10,15 @@ export default function showPopUp() {
             activePopUp();
 
             httpRequest({
-                url: `https://boiling-refuge-66454.herokuapp.com/images/${photoImg.dataset.id}`,
+                url: window.baseURL + `/${photoImg.dataset.id}`,
                 onSuccess: (data) => {
                     generatePopUp(data);
                 },
             });
         });
     });
+
+    addComment();
 }
 
 function activePopUp() {
@@ -23,14 +26,12 @@ function activePopUp() {
     const overlay = document.querySelector('.bg-overlay');
     popup.classList.add('active');
     overlay.classList.add('active');
-
-    overlay.classList.contains('active')
-        ? (document.body.style.overflow = 'hidden')
-        : (document.body.style.overflow = 'visible');
+    document.body.style.overflow = 'hidden';
 
     overlay.addEventListener('click', () => {
         popup.classList.remove('active');
         overlay.classList.remove('active');
+        document.body.style.overflow = 'visible';
         resetPopUp();
     });
 }
@@ -38,6 +39,7 @@ function activePopUp() {
 function generatePopUp(jsonData) {
     const popUpImg = document.querySelector('.popup__img');
     popUpImg.src = jsonData.url;
+    popUpImg.dataset.id = jsonData.id;
 
     jsonData.comments.forEach((comment) => {
         const commentText = document.createElement('li');
